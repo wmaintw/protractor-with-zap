@@ -1,0 +1,4 @@
+zap-reports/*
+.gradle/*
+.idea/*
+

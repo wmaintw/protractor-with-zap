@@ -1,0 +1,35 @@
+apply plugin: "security-zap"
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath(
+                'com.thoughtworks.tools:security-zap:1.0.1'
+        )
+    }
+}
+
+zap {
+    server {
+        // required, absolute path to the ZAP install folder
+        home = "/Users/wma/Downloads/security/zap-for-linux/ZAP_2.3.1"
+    }
+
+    target {
+        // required, the website to be tested against ZAP
+        url = "http://juliemr.github.io/protractor-demo"
+
+        // optional, urls match these rege will be ignored from ZAP, default to no exclusion
+        exclude = ['.*/css/.*', '.*/js/.*', '.*/fonts/.*', ".*\\.css", ".*\\.js"]
+    }
+
+    scan {
+        // optional, before scan, ZAP will crawl from here first, default to zap.target.url
+        crawlFrom = "http://juliemr.github.io/protractor-demo"
+
+        // optional, urls match these regex will be ignored from scan, default to no exclusion
+        exclude = ['.*/css/.*', '.*/js/.*', '.*/fonts/.*', ".*\\.css", ".*\\.js"]
+    }
+}
