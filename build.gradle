@@ -1,3 +1,4 @@
+apply plugin: "java"
 apply plugin: "security-zap"
 
 buildscript {
@@ -32,4 +33,17 @@ zap {
         // optional, urls match these regex will be ignored from scan, default to no exclusion
         exclude = ['.*/css/.*', '.*/js/.*', '.*/fonts/.*', ".*\\.css", ".*\\.js"]
     }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    runtime('org.apache.struts:struts2-core:2.3.12')
+}
+
+task getAllDependencies(type: Copy) {
+    from sourceSets.main.runtimeClasspath
+    into 'allLibs/'
 }

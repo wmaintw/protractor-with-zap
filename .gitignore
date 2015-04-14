@@ -1,4 +1,7 @@
 zap-reports/*
 .gradle/*
 .idea/*
+target/*
+allLibs/*
 
+*.html
