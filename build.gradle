@@ -40,10 +40,20 @@ repositories {
 }
 
 dependencies {
-    runtime('org.apache.struts:struts2-core:2.3.12')
+    compile(
+            'org.apache.struts:struts2-core:2.3.12',
+            'org.apache.directory.studio:org.apache.commons.pool:1.6',
+            'com.kenai.nbpwr:org-apache-commons-dbcp:1.2.2-201002241055'
+    )
 }
 
 task getAllDependencies(type: Copy) {
-    from sourceSets.main.runtimeClasspath
+    from sourceSets.main.compileClasspath
     into 'allLibs/'
 }
+
+task cleanDownloadedDependencies(type: Delete) {
+    delete 'allLibs'
+}
+
+getAllDependencies.dependsOn cleanDownloadedDependencies
