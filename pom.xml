@@ -22,6 +22,16 @@
             <artifactId>struts2-core</artifactId>
             <version>2.3.14</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.directory.studio</groupId>
+            <artifactId>org.apache.commons.pool</artifactId>
+            <version>1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kenai.nbpwr</groupId>
+            <artifactId>org-apache-commons-dbcp</artifactId>
+            <version>1.2.2-201002241055</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -37,6 +47,25 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <failOnError>true</failOnError>
+                    <includeFilterFile>${session.executionRootDirectory}/findbugs-security-include.xml</includeFilterFile>
+                    <excludeFilterFile>${session.executionRootDirectory}/findbugs-security-exclude.xml</excludeFilterFile>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>1.4.0</version>
+                        </plugin>
+                    </plugins>
+                </configuration>
             </plugin>
         </plugins>
     </build>
