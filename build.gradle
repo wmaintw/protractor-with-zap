@@ -1,15 +1,44 @@
+apply plugin: "idea"
 apply plugin: "java"
 apply plugin: "security-zap"
+//apply plugin: "dependency-check"
 
 buildscript {
     repositories {
+//        maven {
+//            url uri('../../repo')
+//        }
+        maven {
+            url 'http://dl.bintray.com/wei/maven'
+        }
         mavenCentral()
     }
     dependencies {
         classpath(
-                'com.thoughtworks.tools:security-zap:1.0.1'
+                'com.thoughtworks.tools:security-zap:1.0.1',
+                'com.tools.security:dependency-check:0.0.2'
         )
     }
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "dependency-check"
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyCheck {
+//        proxyServer = "127.0.0.1"
+//        proxyPort = 3128
+//    proxyUsername = "username"
+//    proxyPassword = "password"
+    }
+}
+
+subprojects {
+
 }
 
 zap {
