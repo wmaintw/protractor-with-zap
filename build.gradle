@@ -15,7 +15,7 @@ buildscript {
     }
     dependencies {
         classpath(
-                'com.thoughtworks.tools:security-zap:1.0.1',
+                'com.thoughtworks.tools:security-zap:1.0.5',
                 'com.tools.security:dependency-check:0.0.2'
         )
     }
@@ -45,6 +45,8 @@ zap {
     server {
         // required, absolute path to the ZAP install folder
         home = "/Users/wma/Downloads/security/zap-for-linux/ZAP_2.3.1"
+
+        port = 8083
     }
 
     target {
